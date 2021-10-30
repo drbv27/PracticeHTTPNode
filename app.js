@@ -1,25 +1,15 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 //motor de plantillas
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
 app.use(express.static(__dirname + "/public"));
 
-app.get("/", (req, res) => {
-  res.render("index", { titulo: "Mi titulo dinamico" });
-});
-/* app.get("/", (req, res) => {
-  res.send("Hello World!");
-}); */
-
-app.get("/servicios", (req, res) => {
-  res.render("servicios", { tituloServicios: "Un titulo mas" });
-});
-/* app.get("/servicios", (req, res) => {
-  res.send("en servicios");
-}); */
+//rutas web desde el router
+app.use("/", require("./routers/rutasWeb"));
+app.use("/mascotas", require("./routers/Mascotas"));
 
 app.use((req, res, next) => {
   res.status(404).render("404", {
