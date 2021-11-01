@@ -27,7 +27,11 @@
               <td>
                 <%= mascota.descripcion %>
               </td>
-              <td>@mdo</td>
+              <td>
+                <a href="mascotas/<%= mascota.id %>" class="btn btn-warning bt-sm">
+                  Editar
+                </a>
+              </td>
             </tr>
             <% }) %>
               <% } %>
